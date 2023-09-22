@@ -9,7 +9,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'Diacus',
-  description: '',
+  description: 'A simple Diacus App',
 };
 
 export default function RootLayout({

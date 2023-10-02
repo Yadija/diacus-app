@@ -87,7 +87,9 @@ export default function Login() {
         </button>
         <p className='text-center text-[#F0F0F0]'>
           {`Don't have an account? `}
-          <Link href="/register" className='text-[#E5D283]'>Register</Link>
+          <Link href='/register' className='text-[#E5D283]'>
+            Register
+          </Link>
         </p>
       </form>
     </main>

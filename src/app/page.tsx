@@ -48,13 +48,6 @@ export default async function Home() {
           )
         )}
       </ul>
-
-      <section className='fixed bottom-0 w-[36rem] bg-slate-400 py-3'>
-        <ul className='flex justify-around'>
-          <li>Home</li>
-          <li>User</li>
-        </ul>
-      </section>
     </main>
   );
 }

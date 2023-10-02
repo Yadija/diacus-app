@@ -99,7 +99,9 @@ export default function Register() {
         </button>
         <p className='text-center text-[#F0F0F0]'>
           {`Already have an account? `}
-          <Link href="/login" className='text-[#E5D283]'>Login</Link>
+          <Link href='/login' className='text-[#E5D283]'>
+            Login
+          </Link>
         </p>
       </form>
     </main>

@@ -1,3 +1,4 @@
+import ThreadInput from '@/components/ThreadInput';
 import Image from 'next/image';
 
 async function getData() {
@@ -22,19 +23,7 @@ export default async function Home() {
         <h1>Diacus App</h1>
       </nav>
 
-      <form className='mx-2 my-4 flex w-full justify-center'>
-        <input
-          type='text'
-          placeholder='Write your message ...'
-          className='mx-2 w-96 rounded-xl px-3 py-1 shadow-sm'
-        />
-        <button
-          type='button'
-          className='rounded-xl bg-[#213555] px-3 py-1 text-[#F0F0F0] shadow-sm'
-        >
-          Send
-        </button>
-      </form>
+      <ThreadInput />
 
       <ul className='m-4 flex flex-col gap-2'>
         {data.threads.map(

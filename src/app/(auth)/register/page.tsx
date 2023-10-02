@@ -1,6 +1,7 @@
 'use client';
 
 import useInput from '@/hooks/useInput';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FormEvent, useEffect, useState } from 'react';
 
@@ -96,6 +97,10 @@ export default function Register() {
         <button type='submit' className='mt-8 bg-[#E5D283] p-2 font-bold'>
           Register
         </button>
+        <p className='text-center text-[#F0F0F0]'>
+          {`Already have an account? `}
+          <Link href="/login" className='text-[#E5D283]'>Login</Link>
+        </p>
       </form>
     </main>
   );

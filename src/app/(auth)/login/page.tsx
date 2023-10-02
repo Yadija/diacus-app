@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useState } from 'react';
 import useInput from '@/hooks/useInput';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const login = async ({
   username,
@@ -84,6 +85,10 @@ export default function Login() {
         <button type='submit' className='mt-8 bg-[#E5D283] p-2 font-bold'>
           Login
         </button>
+        <p className='text-center text-[#F0F0F0]'>
+          {`Don't have an account? `}
+          <Link href="/register" className='text-[#E5D283]'>Register</Link>
+        </p>
       </form>
     </main>
   );

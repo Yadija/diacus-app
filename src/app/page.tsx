@@ -1,4 +1,4 @@
-import ThreadInput from '@/components/ThreadInput';
+import ThreadInput from '@/components/ThreadInput/ThreadInput';
 import Image from 'next/image';
 
 async function getData() {

@@ -28,7 +28,7 @@ const register = async ({
   });
 
   if (!response.ok) {
-    alert('Failed to fetch data');
+    return response.json();
   }
 
   const responseJson = await response.json();
@@ -41,25 +41,21 @@ export default function Register() {
   const [username, onUsernameChange] = useInput('');
   const [fullname, onFullnameChange] = useInput('');
   const [password, onPasswordChange] = useInput('');
-
-  const [auth, setAuth] = useState(false);
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-
-    if (accessToken) {
-      setAuth(true);
-    }
-  }, []);
-
-  if (auth) {
-    router.push('/');
-  }
+  const [errorMessage, setErrorMessage] = useState('');
 
   const onRegister = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    await register({ username, fullname, password });
+    const data = await register({ username, fullname, password });
+
+    if (data.statusCode === 400) {
+      if (typeof data.message === 'string') {
+        setErrorMessage(data.message);
+      } else {
+        setErrorMessage(data.message[0]);
+      }
+      return;
+    }
 
     router.push('/login');
   };
@@ -73,6 +69,9 @@ export default function Register() {
         <h1 className='text-center text-2xl font-bold text-[#F0F0F0]'>
           Register
         </h1>
+        {errorMessage && (
+          <p className='translate-y-3 text-sm text-red-500 shadow-md'>*{errorMessage}</p>
+        )}
         <input
           className='px-2 py-1'
           type='text'

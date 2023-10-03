@@ -1,62 +1,29 @@
 'use client';
 
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent } from 'react';
 import useInput from '@/hooks/useInput';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-
-const login = async ({
-  username,
-  password,
-}: {
-  username: string;
-  password: string;
-}) => {
-  const response = await fetch('http://localhost:5000/auth', {
-    method: 'POST',
-    cache: 'no-store',
-    body: JSON.stringify({
-      username,
-      password,
-    }),
-    headers: {
-      'content-type': 'application/json',
-    },
-  });
-
-  if (!response.ok) {
-    alert('Failed to fetch data');
-  }
-
-  const responseJson = await response.json();
-  return responseJson.data;
-};
+import { signIn, useSession, signOut } from 'next-auth/react';
 
 export default function Login() {
+  const session = useSession();
   const router = useRouter();
 
   const [username, onUsernameChange] = useInput('');
   const [password, onPasswordChange] = useInput('');
 
-  const [auth, setAuth] = useState(false);
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-
-    if (accessToken) {
-      setAuth(true);
-    }
-  }, []);
-
-  if (auth) {
-    router.push('/');
-  }
+  // if (session.status === 'authenticated') {
+  //   router.push('/');
+  // }
 
   const onLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const { accessToken } = await login({ username, password });
-    localStorage.setItem('accessToken', accessToken);
+    signIn('credentials', {
+      username,
+      password,
+    });
 
     router.push('/');
   };

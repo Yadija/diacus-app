@@ -1,3 +1,4 @@
+import Navbar from '@/components/Navbar/Navbar';
 import ThreadInput from '@/components/ThreadInput/ThreadInput';
 import Image from 'next/image';
 
@@ -19,12 +20,8 @@ export default async function Home() {
 
   return (
     <main className='relative m-auto min-h-screen max-w-xl bg-[#F0F0F0]'>
-      <nav className='bg-[#213555] p-4 text-[#F0F0F0]'>
-        <h1>Diacus App</h1>
-      </nav>
-
+      <Navbar />
       <ThreadInput />
-
       <ul className='m-4 flex flex-col gap-2'>
         {data.threads.map(
           (thread: { id: string; content: string; owner: string }) => (

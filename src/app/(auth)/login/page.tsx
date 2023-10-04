@@ -19,7 +19,7 @@ export default function Login() {
       router?.push('/');
     }
   }, [session]);
-  
+
   if (session.status === 'loading') {
     return <p>Loading ...</p>;
   }
@@ -46,7 +46,9 @@ export default function Login() {
           className='flex w-[400px] flex-col gap-4 bg-[#213555] p-4'
           onSubmit={onLogin}
         >
-          <h1 className='text-center text-2xl font-bold text-[#F0F0F0]'>Login</h1>
+          <h1 className='text-center text-2xl font-bold text-[#F0F0F0]'>
+            Login
+          </h1>
           {errorMessage && (
             <p className='translate-y-3 text-sm text-red-500 shadow-md'>
               *{errorMessage}

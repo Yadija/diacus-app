@@ -50,7 +50,7 @@ export default function Register() {
       router?.push('/');
     }
   }, [session]);
-  
+
   if (session.status === 'loading') {
     return <p>Loading ...</p>;
   }
@@ -122,5 +122,5 @@ export default function Register() {
     );
   } else {
     return null;
-  };
+  }
 }

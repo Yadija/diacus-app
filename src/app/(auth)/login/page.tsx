@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
 import useInput from '@/hooks/useInput';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -12,6 +12,7 @@ export default function Login() {
 
   const [username, onUsernameChange] = useInput('');
   const [password, onPasswordChange] = useInput('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   // if (session.status === 'authenticated') {
   //   router.push('/');
@@ -20,10 +21,16 @@ export default function Login() {
   const onLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    signIn('credentials', {
+    const login = await signIn('credentials', {
       username,
       password,
+      redirect: false,
     });
+
+    if (login?.status === 401) {
+      setErrorMessage('Invalid username or password');
+      return;
+    }
 
     router.push('/');
   };
@@ -35,6 +42,11 @@ export default function Login() {
         onSubmit={onLogin}
       >
         <h1 className='text-center text-2xl font-bold text-[#F0F0F0]'>Login</h1>
+        {errorMessage && (
+          <p className='translate-y-3 text-sm text-red-500 shadow-md'>
+            *{errorMessage}
+          </p>
+        )}
         <input
           className='px-2 py-1'
           type='text'

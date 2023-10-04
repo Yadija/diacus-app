@@ -3,7 +3,7 @@
 import useInput from '@/hooks/useInput';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 const register = async ({
   username,
@@ -70,7 +70,9 @@ export default function Register() {
           Register
         </h1>
         {errorMessage && (
-          <p className='translate-y-3 text-sm text-red-500 shadow-md'>*{errorMessage}</p>
+          <p className='translate-y-3 text-sm text-red-500 shadow-md'>
+            *{errorMessage}
+          </p>
         )}
         <input
           className='px-2 py-1'

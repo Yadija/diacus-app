@@ -10,25 +10,18 @@ const handler = NextAuth({
         const response = await fetch('http://localhost:5000/auth', {
           method: 'POST',
           cache: 'no-store',
-          body: JSON.stringify({
-            username: credentials?.username,
-            password: credentials?.password,
-          }),
+          body: JSON.stringify(credentials),
           headers: {
             'content-type': 'application/json',
           },
         });
 
         if (!response.ok) {
-          alert('Failed to fetch data');
+          return null;
         }
 
         const responseJson = await response.json();
-        if (responseJson.data) {
-          return { ...responseJson.data, username: credentials.username };
-        } else {
-          return null;
-        }
+        return { ...responseJson.data, username: credentials?.username };
       },
     }),
   ],

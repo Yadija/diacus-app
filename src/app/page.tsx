@@ -1,9 +1,10 @@
+import { BASE_URL } from '@/api/axios';
 import Navbar from '@/components/Navbar/Navbar';
 import ThreadInput from '@/components/ThreadInput/ThreadInput';
 import Image from 'next/image';
 
 async function getData() {
-  const response = await fetch('http://localhost:5000/threads', {
+  const response = await fetch(`${BASE_URL}/threads`, {
     cache: 'no-store',
   });
 

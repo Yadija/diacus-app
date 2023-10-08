@@ -1,3 +1,4 @@
+import { BASE_URL } from '@/api/axios';
 import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
@@ -7,7 +8,7 @@ const handler = NextAuth({
       name: 'Credentials',
       credentials: {},
       async authorize(credentials: any) {
-        const response = await fetch('http://localhost:5000/auth', {
+        const response = await fetch(`${BASE_URL}/auth`, {
           method: 'POST',
           cache: 'no-store',
           body: JSON.stringify(credentials),

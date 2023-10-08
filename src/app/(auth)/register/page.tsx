@@ -1,5 +1,6 @@
 'use client';
 
+import { BASE_URL } from '@/api/axios';
 import useInput from '@/hooks/useInput';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -15,7 +16,7 @@ const register = async ({
   fullname: string;
   password: string;
 }) => {
-  const response = await fetch('http://localhost:5000/users', {
+  const response = await fetch(`${BASE_URL}/users}`, {
     method: 'POST',
     cache: 'no-store',
     body: JSON.stringify({
